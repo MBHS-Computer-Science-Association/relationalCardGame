@@ -1,0 +1,75 @@
+<html>
+
+	<head>
+	 	<meta charset="utf-8" />
+    	<title>Trees</title>
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+
+		<script>
+		$( document ).ready(function() {
+			$('.menu .item').tab();
+		});
+		
+		</script>
+		<script>
+			$( function() {
+    			
+			$(document).ready(function(){
+			$("#Create").click(function(){
+				// $("#test").append("test ");
+
+				$( "#dialog" ).dialog();
+  			  });
+				if(confirm(<div id="test" style="font-size:20px;"><p>test</p></div>)==true){
+					console.log("bet");
+				}else{
+					console.log("set"); 
+				}
+				// console.log("set")
+			});
+			$("#Join").click(function(){
+				$("#test").append("Bye ");
+				// console.log("set")
+			});
+
+		});
+		</script>
+	</head>
+
+	<body>
+			<div id="pin"style="position:fixed;float:right; right:3vw;">PIN:</div>
+			<div class="ui top attached tabular menu" style="position:fixed; left:2vw; width:96vw;">
+  				<a class="active item" data-tab="tab-1">User</a>
+ 				<a class="item" data-tab="tab-2">Pay</a>
+ 				<a class="item" data-tab="tab-3">Random Tab</a>
+			</div>
+			
+				<!-- Tab 1 - User -->
+				<div class="ui attached tab active segment" data-tab="tab-1" style="overflow-y: scroll; height: 90vh ; position: fixed; left: 2vw; top: 5vh;   width:96vw; ">
+					<div class = "ui bottom attached centered text container"style="font-size: 50px">
+						<p>
+							Welcome to TREE! A better version of Cards against Humanities!!!! ;)
+								<br>
+							Click Play TO PAY NOW!
+						</p>
+					</div>
+
+				</div>
+				<!-- Tab 2 - Play -->
+				<div class="ui attached tab segment" data-tab="tab-2" style="overflow-y: scroll; height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
+					<div id="test" style="font-size:20px;"><p>test</p></div>
+					<button id="Create" class="ui button">Create Game</button>
+					<!-- <button id="Join" class="ui button">Join Game</button> -->
+
+				</div>
+				<!-- Tab 3 - Random Tab -->
+				<div class="ui attached tab segment" data-tab="tab-3" style="overflow-y: scroll; height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
+
+
+				</div>
+	</body>
+
+</html>
