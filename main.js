@@ -6,16 +6,8 @@ var games = [];
 var game;
 var me = {};
 
-getGame();
-
 socket.on('pin', function(newPin){
 	pin = newPin;
-});
-
-socket.on('update', function(gameID){
-	if(gameID==me.gameID){
-		getGame();
-	}
 });
 
 socket.on('showCards', function(gameID){
@@ -39,7 +31,9 @@ function getGames(){
 	});
 }
 
-
+function createGame(){
+	socket.emit('createGame',0);
+}
 
 function joinGame(gameID){
 	socket.emit('joinGame', gameID);
