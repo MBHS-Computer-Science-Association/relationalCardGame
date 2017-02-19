@@ -16,8 +16,13 @@
 		
 		</script>
 		<script>
-        function a(){
-            console.log("asdf");
+        function green(card){
+            for(i= 0;i<10;i++){
+                var c = i+1
+                $("#"+c).css({"background-color":"white"});   
+               } 
+             $("#"+card).css({"background-color":"lightgreen"});
+            
         }
             var selectedCard = 0;
             $(document).ready(function(){
@@ -44,6 +49,7 @@
 				card1.onclick = function(){
     				console.log("1");
                     selectedCard=1;
+                    green(1);
 				};
 
                 var card2 = document.getElementById("2");
@@ -51,7 +57,7 @@
                 card2.onclick = function(){
                     console.log("2");
                     selectedCard=2;
-
+                    green(2);
                 };
 
                 var card3 = document.getElementById("3");
@@ -59,6 +65,7 @@
                 card3.onclick = function(){
                     console.log("3");
                     selectedCard=3;
+                    green(3);
                 };
 
                 var card4 = document.getElementById("4");
@@ -66,6 +73,7 @@
                 card4.onclick = function(){
                     console.log("4");
                     selectedCard=4;
+                    green(4);
                 };
 
                 var card5 = document.getElementById("5");
@@ -73,6 +81,7 @@
                 card5.onclick = function(){
                     console.log("5");
                     selectedCard=5;
+                    green(5);
                 };
 
                 var card6 = document.getElementById("6");
@@ -80,6 +89,7 @@
                 card6.onclick = function(){
                     console.log("6");
                     selectedCard=6;
+                    green(6);
                 };
 
                 var card7 = document.getElementById("7");
@@ -87,6 +97,7 @@
                 card7.onclick = function(){
                     console.log("7");
                     selectedCard=7;
+                    green(7);
                 };
 
                 var card8 = document.getElementById("8");
@@ -94,6 +105,7 @@
                 card8.onclick = function(){
                     console.log("8");
                     selectedCard=8;
+                    green(8);
                 };
 
                 var card9 = document.getElementById("9");
@@ -101,6 +113,7 @@
                 card9.onclick = function(){
                     console.log("9");
                     selectedCard=9;
+                    green(9);
                 };
 
                 var card10 = document.getElementById("10");
@@ -108,6 +121,7 @@
                 card10.onclick = function(){
                     console.log("10");
                     selectedCard=10;
+                    green(10);
                 };
 			});
 
