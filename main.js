@@ -4,12 +4,16 @@ var pin = -2;
 
 var games = [];
 
-var users = [];
-
 var me = {};
 
 socket.on('pin', function(newPin){
 	pin = newPin;
+});
+
+socket.on('update', function(gameID){
+	if(gameID==me.gameID){
+		getGame();
+	}
 });
 
 function getGames(){
@@ -28,9 +32,9 @@ function getSelf(){
 	});
 }
 
-function getUser(){
-	socket.emit('getUsers', function(me.gameID, newUsers){
-		users = newUsers;
+function getGame(){
+	socket.emit('getGame', function(me.gameID, newGames){
+		games = newGames;
 	});
 }
 

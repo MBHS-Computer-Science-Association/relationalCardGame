@@ -16,10 +16,12 @@
 		
 		</script>
 		<script>
+
         function a(){
             console.log("asdf");
         }
             var selectedCard = 0;
+
             $(document).ready(function(){
     		var hand = ["sfdtfgv"]
             for(i=0;i<10;i++){
@@ -32,24 +34,29 @@
   			  });
 			});
 
+
             $(document).ready(function(){
                 $('#submit').click(function(){
                     submitCards(selectedCard);
                 });
             });
+
 			
 			$(document).ready(function(){
 				var card1 = document.getElementById("1");
 				card1.style.cursor = 'pointer';
 				card1.onclick = function(){
     				console.log("1");
+
                     selectedCard=1;
+
 				};
 
                 var card2 = document.getElementById("2");
                 card2.style.cursor = 'pointer';
                 card2.onclick = function(){
                     console.log("2");
+
                     selectedCard=2;
 
                 };
@@ -58,56 +65,72 @@
                 card3.style.cursor = 'pointer';
                 card3.onclick = function(){
                     console.log("3");
+
                     selectedCard=3;
+
                 };
 
                 var card4 = document.getElementById("4");
                 card4.style.cursor = 'pointer';
                 card4.onclick = function(){
                     console.log("4");
+
                     selectedCard=4;
+
                 };
 
                 var card5 = document.getElementById("5");
                 card5.style.cursor = 'pointer';
                 card5.onclick = function(){
                     console.log("5");
+
                     selectedCard=5;
+
                 };
 
                 var card6 = document.getElementById("6");
                 card6.style.cursor = 'pointer';
                 card6.onclick = function(){
                     console.log("6");
+
                     selectedCard=6;
+
                 };
 
                 var card7 = document.getElementById("7");
                 card7.style.cursor = 'pointer';
                 card7.onclick = function(){
                     console.log("7");
+
                     selectedCard=7;
+
                 };
 
                 var card8 = document.getElementById("8");
                 card8.style.cursor = 'pointer';
                 card8.onclick = function(){
                     console.log("8");
+
                     selectedCard=8;
+
                 };
 
                 var card9 = document.getElementById("9");
                 card9.style.cursor = 'pointer';
                 card9.onclick = function(){
                     console.log("9");
+
                     selectedCard=9;
+
                 };
 
                 var card10 = document.getElementById("10");
                 card10.style.cursor = 'pointer';
                 card10.onclick = function(){
                     console.log("10");
+
                     selectedCard=10;
+
                 };
 			});
 
@@ -173,7 +196,9 @@
     					</div>
     				</div>
 
+
                     <button id="submit" class ="ui massive negative button" style="width: 30vw; height: 30vh; position: fixed; top:35vh; right:35vw">CLICK ME HARDER</button>
+
     				
     				<div class="ui centered black raised card" style="background-color: black;position: fixed; width: 15vw; height: 25vh; top: 20vh; left: 8vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 26px">
