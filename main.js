@@ -42,7 +42,7 @@ function submitCards(cardIndex){
 	socket.emit('submitCards', cardIndexArray);
 }
 
-fucntion kaiserPick(index){
+function kaiserPick(index){
 	socket.emit('kaiserPick', index);
 }
 
