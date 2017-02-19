@@ -59,7 +59,7 @@ io.on('connection', function(socket){
   	callback(getUsersByID(pin));
   });
 
-  socket.on('getUsers', function(callback)){
+  socket.on('getGame', function(callback)){
   	callback(getGameByID(getUserByID(pin).gameID).users);
   }
 
@@ -73,9 +73,9 @@ io.on('connection', function(socket){
 	  				break out;
 	  			}
 	  		}
-	  	}
-  	}
-  });
+	  	}	
+  	}	
+  });	
 
   socket.on('setBet', function(betArray){
   	getUserByID(pin).bets = betArray;
@@ -84,6 +84,7 @@ io.on('connection', function(socket){
   socket.on('kaiserPick', function(index){
   	getGameByID(getUserByID(pin).gameID).kaiserPickIndex = index;
   	evaluateGame(getUserByID(pin).gameID);
+  	io.emit('update', gameID);
   });
 
 
@@ -133,6 +134,10 @@ function evaluateGame(gameID){
 			user.cards.push(dataPoint);
 		}
 	}
+	var data = fs.readFileSync("data/0a.txt", "utf8");
+	var dataArr = data.split("\n");
+	var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
+	game.question = dataPoint;
 }
 
 function getGameByID(){
