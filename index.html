@@ -12,15 +12,18 @@
 		$( document ).ready(function() {
 			$('.menu .item').tab();
 		});
-		
+
 		</script>
 		<script>
-    			
+    	var hand = []
+			for(i=0;i<10;i++){
+				$("#hand"+i).text(hand[i]);
+			}
 			$(document).ready(function(){
 			$("#Create").click(function(){
   			  });
 			});
-			
+
 			$(document).ready(function(){
 				var card1 = document.getElementById("1");
 				card1.style.cursor = 'pointer';
@@ -31,7 +34,7 @@
 
 			$("#Join").click(function(){
 				$("#test").append("Bye ");
-				// console.log("set"),.km 
+				// console.log("set"),.km
 			});
 
 			$( document ).ready(function() {
@@ -55,7 +58,7 @@
  				<a class="item" data-tab="tab-2">Pay</a>
  				<a class="item" data-tab="tab-3">Random Tab</a>
 			</div>
-			
+
 				<!-- Tab 1 - User -->
 				<div class="ui attached tab active segment" data-tab="tab-1" style="overflow-y: scroll; height: 90vh ; position: fixed; left: 2vw; top: 5vh;   width:96vw; ">
 					<div class = "ui bottom attached centered text container"style="font-size: 50px">
@@ -72,7 +75,7 @@
 				<!-- Create Game button -->
 					<div class="ui menu" style="position: fixed">
       					<a class="browse item">
-      				    Create game 
+      				    Create game
       				  	</a>
       				  	<div class="ui fluid popup top right transition hidden">
      				    	<div class="ui one column relaxed divided grid">
@@ -90,12 +93,12 @@
       						</div>
     					</div>
     				</div>
-    				
+
     				<div class="ui centered black raised card" style="background-color: black;position: fixed; width: 15vw; height: 25vh; top: 20vh; left: 8vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 26px">
     						<p style="color: white;align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
     				<!-- Your cards -->
     				<div id="1" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 8vh; right: 4vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
@@ -107,7 +110,7 @@
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 42vh; right: 4vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
@@ -119,49 +122,49 @@
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 4vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>		
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 8vh; right: 16vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 25vh; right: 16vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 42vh; right: 16vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 59vh; right: 16vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     				<div class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 16vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 16px">
     						<p style="align-content: center;">Test</p>
     					</div>
-    				</div>	
+    				</div>
 
     			</div>
     			<!-- Game Instance -->
-				
-    			
-    			
+
+
+
 				<!-- Tab 3 - Random Tab -->
 				<div class="ui attached tab segment" data-tab="tab-3" style="overflow-y: scroll; height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 
