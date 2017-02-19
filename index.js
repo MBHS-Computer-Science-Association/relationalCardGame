@@ -7,7 +7,6 @@ var port = 80;
 
 var nextUserPin = 0;
 var nextGamePin = 1;
-
 var maxCards = 10;
 
 var users = [];
@@ -38,32 +37,48 @@ app.get(/^(.+)$/, function(req, res){
 
 io.on('connection', function(socket){
   var pin = nextUserPin;
-  nextUserePin = nextUserPin + 2;
+  nextUserPin = nextUserPin + 2;
   socket.emit('pin', pin);
+  var newUser = {};
+  newUser.pin = pin;
+  newUser.score = 5;
+  newUser.isKaiser = false;
+  newUser.gameID = 1;
+  newUser.bets = [];
+  newUser.cards = [];
+  users.push(newUser);
 
-  socket.on('createGame', function(cardSetIndex){
+
+  socket.on('createGame', function(cardSetIndex, callback){
   	var newGame = {};
   	newGame.pin = nextGamePin;
   	nextGamePin = nextGamePin + 2;
-  	newGame.cardSetIndex = cardSEtIndex;
+  	newGame.cardSetIndex = cardSetIndex;
   	newGame.users = [];
-  	newGame.users.push(getUserBYID(pin));
+  	newGame.cards = [];
+  	games.push(newGame);
+  	getUserByID(pin).isKaiser = true;
+  	newGame.users.push(getUserByID(pin));
+  	callback(newGame.pin);
   });
 
   socket.on('getGames', function(callback){
   	callback(games);
   });
 
-  socket.on('joinGame', function(gameID){
-  	getGameByID(gameID).users.push(getUserBYID(pin));
+  socket.on('joinGame', function(gameID, callback){
+  	getGameByID(gameID).users.push(getUserByID(pin));
+  	getUserByID(pin).gameID = gameID;
+  	refreshCards(gameID);
+  	callback();
   });
 
   socket.on('getSelf', function(callback){
-  	callback(getUsersByID(pin));
+  	callback(getUserByID(pin));
   });
 
   socket.on('getGame', function(callback){
-  	callback(getGameByID(getUserByID(pin).gameID).users);
+  	callback(getGameByID(getUserByID(pin).gameID));
   });
 
   socket.on('submitCards', function(cardIndexArray){
@@ -132,23 +147,27 @@ function evaluateGame(gameID){
 			}
 		}
 	}
-
-	for(var i = 0; i<game.users.length; i++){
-		var user = game.users[i];
-		while(users.cards.length<maxCards){
-			var data = fs.readFileSync("data/0a.txt", "utf8");
-			var dataArr = data.split("\n");
-			var dataPovar = dataArr[Math.floor(Math.random()*dataArr.length)];
-			user.cards.push(dataPoint);
-		}
-	}
+	refreshCards(gameID);
 	var data = fs.readFileSync("data/0a.txt", "utf8");
 	var dataArr = data.split("\n");
-	var dataPovar = dataArr[Math.floor(Math.random()*dataArr.length)];
+	var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
 	game.question = dataPoint;
 }
 
-function getGameByID(){
+function refreshCards(gameID){
+	var game = getGameByID(gameID);
+	for(var i = 0; i<game.users.length; i++){
+		var user = game.users[i];
+		while(user.cards.length<maxCards){
+			var data = fs.readFileSync("data/0a.txt", "utf8");
+			var dataArr = data.split("\n");
+			var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
+			user.cards.push(dataPoint);
+		}
+	}
+}
+
+function getGameByID(pin){
 	for(var i = 0; i<games.length; i++){
 		if(games[i].pin == pin){
 			return games[i];
@@ -159,4 +178,5 @@ function getGameByID(){
 http.listen(port, function(){
   console.log('listening on *:'+port);
 });
+
 

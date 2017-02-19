@@ -37,9 +37,14 @@
              $("#"+card).css({"background-color":"lightgreen"});
 
         }
+        function revealhand(){
+            for (i = 0; i < me.cards.length; i++) {
+               $("#hand"+i).text(me.cards[i]);
+            }
+        }
         function revealcards(){
-            for(i = 0;i<5;i++){
-                // $("hand5" + i).text(games.cards[i])
+            for(i = 0;i<game.cards.length;i++){
+                // $("hand5" + i).text(game.cards[i])
                 // $("hand5").append();
                 if(!false){
                 c=i+1
@@ -61,8 +66,8 @@
                     var selection = [selectedCard];
                     submitCards(selection);
                 });
-                  $('#joinGameButton').click(function(){
-                    joinGame();
+                  $('#createGameButton').click(function(){
+                    createGame();
                 });
             });
 
@@ -165,21 +170,21 @@
                 $("#p2").click(function(){
                     b2+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b2-=1;
                     }
                     $("#c2b").text("Card 2 Bet: " + b2);
                 });
                 $("#p3").click(function(){
                     b3+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b3-=1;
                     }
                     $("#c3b").text("Card 3 Bet: " + b3);
                 });
                 $("#p4").click(function(){
                     b4+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b4-=1;
                     }
 
                     $("#c4b").text("Card 4 Bet: " + b4);
@@ -187,7 +192,7 @@
                 $("#p5").click(function(){
                     b5+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b5-=1;
                     }
                     $("#c5b").text("Card 5 Bet: " + b5);
                 });
@@ -286,7 +291,7 @@
 				<div class="ui attached tab segment" data-tab="tab-2" style="height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 				<!-- Create Game button -->
 					<div class="ui menu" style="position: fixed">
-      					<a class="browse item" id="joinGameButton">
+      					<a class="browse item" id="createGameButton">
       				    Create game
       				  	</a>
       				  	<div class="ui fluid popup top right transition hidden">
