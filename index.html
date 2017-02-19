@@ -26,7 +26,7 @@
 	            $("#u"+ c).text(users.pin + " Score : " + useres.score);
 	        }
 					for(i=0;i<10;i++){
-					 $("#hand"+i).text(me.cards[i]);
+					 	$("#hand"+i).text(me.cards[i]);
 					 }
 				}
         function green(card){
@@ -37,14 +37,9 @@
              $("#"+card).css({"background-color":"lightgreen"});
 
         }
-        function revealhand(){
-            for (i = 0; i < me.cards.length; i++) {
-               $("#hand"+i).text(me.cards[i]);
-            }
-        }
         function revealcards(){
-            for(i = 0;i<game.cards.length;i++){
-                // $("hand5" + i).text(game.cards[i])
+            for(i = 0;i<5;i++){
+                // $("hand5" + i).text(games.cards[i])
                 // $("hand5").append();
                 if(!false){
                 c=i+1
@@ -66,8 +61,11 @@
                     var selection = [selectedCard];
                     submitCards(selection);
                 });
-                  $('#createGameButton').click(function(){
-                    createGame();
+                  $('#joinGameButton').click(function(){
+                    joinGame();
+                });
+								$('#joinpin').click(function(){
+                    joinGame($("#pin").val());
                 });
             });
 
@@ -170,21 +168,21 @@
                 $("#p2").click(function(){
                     b2+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b2-=1;
+                        b1-=1;
                     }
                     $("#c2b").text("Card 2 Bet: " + b2);
                 });
                 $("#p3").click(function(){
                     b3+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b3-=1;
+                        b1-=1;
                     }
                     $("#c3b").text("Card 3 Bet: " + b3);
                 });
                 $("#p4").click(function(){
                     b4+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b4-=1;
+                        b1-=1;
                     }
 
                     $("#c4b").text("Card 4 Bet: " + b4);
@@ -192,7 +190,7 @@
                 $("#p5").click(function(){
                     b5+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b5-=1;
+                        b1-=1;
                     }
                     $("#c5b").text("Card 5 Bet: " + b5);
                 });
@@ -291,7 +289,7 @@
 				<div class="ui attached tab segment" data-tab="tab-2" style="height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 				<!-- Create Game button -->
 					<div class="ui menu" style="position: fixed">
-      					<a class="browse item" id="createGameButton">
+      					<a class="browse item" id="joinGameButton">
       				    Create game
       				  	</a>
       				  	<div class="ui fluid popup top right transition hidden">
@@ -310,6 +308,25 @@
       						</div>
     					</div>
     				</div>
+						<div class="ui menu" style="position: fixed; top:4.9vh; left:12vw;">
+	      					<a class="browse item" id="joinGameButton">
+	      				    Join game
+	      				  	</a>
+	      				  	<div class="ui fluid popup top right transition hidden">
+	     				    	<div class="ui one column relaxed divided grid">
+	         				 		<div class="column"> <h4 class="ui header">Join Game</h4>
+	        							<div class="ui link list">
+	                						<a class="item">
+												<form>
+								  					<input id="pin" class = "ui container" type ="text" style="width:50px" placeholder="Pin"></input>
+								  					<input id="joinpin" type="button" autocomplete="off" value="Submit"></input>
+												</form>
+											</a>
+	          							</div>
+	        						</div>
+	      						</div>
+	    					</div>
+	    				</div>
 
                     <button id="submit" class ="ui positive button" style="width: 22vw; height: 4vh; position: fixed; bottom:6vh; right:3.7vw">Submit</button>
 
