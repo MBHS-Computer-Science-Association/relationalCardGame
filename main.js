@@ -56,8 +56,6 @@ function getGame(){
 	var gameIDPar = me.gameID;
 	socket.emit('getGame', function(newGame){
 		game = newGame;
-		revealcards();
-		console.log('cards revealed');
 	});
 }
 

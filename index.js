@@ -56,6 +56,7 @@ io.on('connection', function(socket){
   	newGame.cardSetIndex = cardSetIndex;
   	newGame.users = [];
   	newGame.cards = [];
+  	newGame.currentCardLength = 1;
   	games.push(newGame);
   	getUserByID(pin).isKaiser = true;
   	newGame.users.push(getUserByID(pin));
