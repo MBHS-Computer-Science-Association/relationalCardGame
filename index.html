@@ -19,16 +19,16 @@
 		var score
 		var users
         function start(){
-					score = me.score;
-	         users = game.users;
+			core = me.score;
+	        users = game.users;
 	        for (var i = users.length - 1; i <users.length; i++) {
 	            var c = i+1;
 	            $("#u"+ c).text(users.pin + " Score : " + useres.score);
 	        }
-					for(i=0;i<10;i++){
-					 	$("#hand"+i).text(me.cards[i]);
-					 }
-				}
+			for(i=0;i<10;i++){
+			 	$("#hand"+i).text(me.cards[i]);
+			 }
+		}
         function green(card){
             for(i= 0;i<10;i++){
                 var c = i+1
@@ -37,15 +37,22 @@
              $("#"+card).css({"background-color":"lightgreen"});
 
         }
+        function revealhand(){
+            for(i = 0; i < me.cards.length;i++){
+                $("#hand"+i).text(me.cards[i]);
+                $("#hand"+i).css({"font-size":"12"});
+            }
+            black();
+        }
         function revealcards(){
-            for(i = 0;i<5;i++){
-                // $("hand5" + i).text(games.cards[i])
+            for(i = 0;i<game.cards.length;i++){
+                $("#hand5" + i).text(game.cards[i])
                 // $("hand5").append();
-                if(!false){
-                c=i+1
-                 $("#m"+c).attr("class","ui left attached tiny button"); $("m"+c).append('<i class="minus icon"></i>');
-                     $("#p"+c).attr("class","right attached ui tiny button"); $("p"+c).append('<i class="plus icon"></i>');
-                  }
+                // if(!false){
+                // c=i+1
+                //  $("#m"+c).attr("class","ui left attached tiny button"); $("m"+c).append('<i class="minus icon"></i>');
+                //      $("#p"+c).attr("class","right attached ui tiny button"); $("p"+c).append('<i class="plus icon"></i>');
+                //   }
             }
 
         }
@@ -58,14 +65,18 @@
 
             $(document).ready(function(){
                 $('#submit').click(function(){
-                    var selection = [selectedCard];
+                    var selection = [selectedCard-1];
                     submitCards(selection);
                 });
-                  $('#joinGameButton').click(function(){
-                    joinGame();
+                $("#createGameButton").click(function(){
+                    createGame();
                 });
-								$('#joinpin').click(function(){
-                    joinGame($("#pin").val());
+                  $('#joinGameButton').click(function(){
+                    
+                });
+				$('#joinpin').click(function(){
+                    console.log('USER IS ENTERING '+$("#pin").val());
+                    joinGame(1);
                 });
             });
 
@@ -168,21 +179,21 @@
                 $("#p2").click(function(){
                     b2+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b2-=1;
                     }
                     $("#c2b").text("Card 2 Bet: " + b2);
                 });
                 $("#p3").click(function(){
                     b3+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b3-=1;
                     }
                     $("#c3b").text("Card 3 Bet: " + b3);
                 });
                 $("#p4").click(function(){
                     b4+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b4-=1;
                     }
 
                     $("#c4b").text("Card 4 Bet: " + b4);
@@ -190,7 +201,7 @@
                 $("#p5").click(function(){
                     b5+=1;
                     if(b1+b2+b3+b4+b5>score){
-                        b1-=1;
+                        b5-=1;
                     }
                     $("#c5b").text("Card 5 Bet: " + b5);
                 });
@@ -251,7 +262,8 @@
 								hide: 800
 			}});
 			  });
-            function round() {
+            
+            function round() {   
                 for (i = 1; i <6; i++) {
                      c = i-1;
                      $("#hand5" +c).text("");
@@ -260,13 +272,21 @@
                      // $("#u"+ i).text(users.pin + " Score : " + useres.score);
                 }
                for(i=0;i<10;i++){
-                $("#hand"+i).text(me.cards[i]);
-            		}
+                    $("#hand"+i).text(me.cards[i]);
+            	} 
+                for (var i = users.length - 1; i <users.length; i++) {
+                     var c = i+1;
+                        $("#u"+ c).text(users.pin + " Score : " + useres.score);
+                }
+            }
+            function black(){
+                $("#black").text(game.question);
+                $("#black").css({"font-size":"12"});
             }
 		</script>
 	</head>
 
-	<body style="background-color: lightgreen;">
+	<body>
 			<div id="pin"style="position:fixed;float:right; right:3vw;">PIN:</div>
 			<div class="ui top attached tabular menu" style="position:fixed; left:2vw; width:96vw;">
   				<a class="active item" data-tab="tab-1">User</a>
@@ -275,12 +295,10 @@
 			</div>
 
 				<!-- Tab 1 - User -->
-				<div class="ui attached tab active segment" data-tab="tab-1" style="overflow-y: scroll; height: 90vh ; position: fixed; left: 2vw; top: 5vh;   width:96vw; background: lightblue;">
+				<div class="ui attached tab active segment" data-tab="tab-1" style="overflow-y: scroll; height: 90vh ; position: fixed; left: 2vw; top: 5vh;   width:96vw; ">
 					<div class = "ui bottom attached centered text container"style="font-size: 50px">
-						<p style="color: pink;">
-							Welcome to TREE! A better version of Cards against Humanities!!!! ;)
-							<br>
-							Click Play TO PAY NOW!
+						<p>
+							Welcome to TREE
 						</p>
 					</div>
 
@@ -289,7 +307,7 @@
 				<div class="ui attached tab segment" data-tab="tab-2" style="height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 				<!-- Create Game button -->
 					<div class="ui menu" style="position: fixed">
-      					<a class="browse item" id="joinGameButton">
+      					<a class="browse item" id="createGameButton">
       				    Create game
       				  	</a>
       				  	<div class="ui fluid popup top right transition hidden">
@@ -332,7 +350,7 @@
 
     				<div class="ui centered black raised card" style="background-color: black;position: fixed; width: 10vw; height: 20vh; top: 10vh; left: 2.5vw">
     					<div class="ui center aligned black inverted text container" style="font-size: 26px">
-    						<p style="color: white;align-content: center;">Question</p>
+    						<p id="black" style="color: white;align-content: center;"></p>
     					</div>
     				</div>
                 <div class="ui relaxed divided list" style="position: fixed; top: 33vh;left: 2.5vw;">
@@ -430,7 +448,7 @@
 
 
 
-                    <div id="11" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 84vw">
+                    <div id="11" class="ui centered card" style="position: fixed; width: 10vw; height: 30vh; top: 61vh; right: 84vw">
                         <div class="ui center aligned black inverted text container" style="font-size: 16px">
                             <p  id="hand50" style="align-content: center;">
 
@@ -439,7 +457,7 @@
                         </div>
                     </div>
 
-                    <div id="12" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 72vw">
+                    <div id="12" class="ui centered card" style="position: fixed; width: 10vw; height: 30vh; top: 61vh; right: 72vw">
                         <div class="ui center aligned black inverted text container" style="font-size: 16px">
                             <p  id="hand51" style="align-content: center;">
 
@@ -448,7 +466,7 @@
                         </div>
                     </div>
 
-                    <div id="13" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 60vw">
+                    <div id="13" class="ui centered card" style="position: fixed; width: 10vw; height: 30vh; top: 61vh; right: 60vw">
                         <div class="ui center aligned black inverted text container" style="font-size: 16px">
                             <p  id="hand52" style="align-content: center;">
 
@@ -457,7 +475,7 @@
                         </div>
                     </div>
 
-                    <div id="14" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 48vw">
+                    <div id="14" class="ui centered card" style="position: fixed; width: 10vw; height: 30vh; top: 61vh; right: 48vw">
                         <div class="ui center aligned black inverted text container" style="font-size: 16px">
                             <p  id="hand53" style="align-content: center;">
 
@@ -466,7 +484,7 @@
                         </div>
                     </div>
 
-                    <div id="15" class="ui centered card" style="position: fixed; width: 10vw; height: 15vh; top: 76vh; right: 36vw">
+                    <div id="15" class="ui centered card" style="position: fixed; width: 10vw; height: 30vh; top: 61vh; right: 36vw">
                         <div class="ui center aligned black inverted text container" style="font-size: 16px">
                             <p  id="hand54" style="align-content: center;">
 

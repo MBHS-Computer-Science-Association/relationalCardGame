@@ -60,6 +60,8 @@ io.on('connection', function(socket){
   	games.push(newGame);
   	getUserByID(pin).isKaiser = true;
   	newGame.users.push(getUserByID(pin));
+  	refreshQuestion(newGame.pin);
+  	console.log(newGame.question);
   	callback(newGame.pin);
   });
 
@@ -68,6 +70,8 @@ io.on('connection', function(socket){
   });
 
   socket.on('joinGame', function(gameID, callback){
+  	console.log('param '+ gameID);
+  	console.log('space '+ games[0].pin);
   	getGameByID(gameID).users.push(getUserByID(pin));
   	getUserByID(pin).gameID = gameID;
   	refreshCards(gameID);
@@ -86,19 +90,12 @@ io.on('connection', function(socket){
   	var game = getGameByID(getUserByID(pin).gameID);
   	if(cardIndexArray.length == game.currentCardLength){
   		out:
-	  	for(var i = game.cards.length-1; i>=0; i--){
-	  		for(var k = 0; k<cardIndexArray.length; k++){
-	  			if(cardIndexArray[k] == i){
-	  				var ans = getUserbyID(pin).cards[i];
-	  				game.cards.push(ans);
-	  				if(game.cards.length==game.users.length-1){
-	  					io.push('showCards', game.pin);
-	  				}
-	  				getUserByID(pin).cards.splice(i,1); // Yes this is idiotic and inefficiant, but you are a failure at life. 
-	  				break out;
-	  			}
-	  		}
-	  	}	
+	  	var ans = getUserByID(pin).cards[cardIndexArray[0]];
+  		game.cards.push(ans);
+  		if(true || (game.cards.length==game.users.length-1)){
+	  		io.emit('showCards', game.pin);
+	  	}
+	  	getUserByID(pin).cards.splice(cardIndexArray[0],1); // Yes this is idiotic and inefficiant, but you are a failure at life. 	
   	}	
   });	
 
@@ -149,10 +146,7 @@ function evaluateGame(gameID){
 		}
 	}
 	refreshCards(gameID);
-	var data = fs.readFileSync("data/0a.txt", "utf8");
-	var dataArr = data.split("\n");
-	var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
-	game.question = dataPoint;
+	refreshQuestion(gameID);
 }
 
 function refreshCards(gameID){
@@ -160,12 +154,20 @@ function refreshCards(gameID){
 	for(var i = 0; i<game.users.length; i++){
 		var user = game.users[i];
 		while(user.cards.length<maxCards){
-			var data = fs.readFileSync("data/0a.txt", "utf8");
+			var data = fs.readFileSync("data/1a.txt", "utf8");
 			var dataArr = data.split("\n");
 			var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
 			user.cards.push(dataPoint);
 		}
 	}
+}
+
+function refreshQuestion(gameID){
+	var game = getGameByID(gameID);
+	var data = fs.readFileSync("data/1a.txt", "utf8");
+	var dataArr = data.split("\n");
+	var dataPoint = dataArr[Math.floor(Math.random()*dataArr.length)];
+	game.question = dataPoint;
 }
 
 function getGameByID(pin){
