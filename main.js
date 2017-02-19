@@ -3,8 +3,10 @@ var socket=io();
 var pin = -2;
 
 var games = [];
-
+var game;
 var me = {};
+
+getGame();
 
 socket.on('pin', function(newPin){
 	pin = newPin;
@@ -13,6 +15,21 @@ socket.on('pin', function(newPin){
 socket.on('update', function(gameID){
 	if(gameID==me.gameID){
 		getGame();
+	}
+});
+
+socket.on('showCards', function(gameID){
+	if(gameID==me.gameID){
+		revealcards();
+	}
+});
+
+socket.on('update', function(gameID){
+	if(gameID==me.gameID){
+		socket.emit('getGame', function(gameIDPar, newGame){
+			game = newGame;
+			round();
+		});
 	}
 });
 
@@ -36,8 +53,8 @@ function getSelf(){
 
 function getGame(){
 	var gameIDPar = me.gameID;
-	socket.emit('getGame', function(gameIDPar, newGames){
-		games = newGames;
+	socket.emit('getGame', function(gameIDPar, newGame){
+		game = newGame;
 	});
 }
 

@@ -14,6 +14,7 @@ var users = [];
 /**
 	pin
 	score
+	isKaiser
 	gameID
 	bets
 	cards
