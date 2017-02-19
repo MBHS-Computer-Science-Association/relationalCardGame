@@ -33,7 +33,8 @@ function getSelf(){
 }
 
 function getGame(){
-	socket.emit('getGame', function(me.gameID, newGames){
+	var gameIDPar = me.gameID;
+	socket.emit('getGame', function(gameIDPar, newGames){
 		games = newGames;
 	});
 }
