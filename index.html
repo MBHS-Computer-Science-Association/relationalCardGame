@@ -15,27 +15,27 @@
 		
 		</script>
 		<script>
-			$( function() {
     			
 			$(document).ready(function(){
 			$("#Create").click(function(){
-				// $("#test").append("test ");
-
-				$( "#dialog" ).dialog();
   			  });
-				if(confirm(<div id="test" style="font-size:20px;"><p>test</p></div>)==true){
-					console.log("bet");
-				}else{
-					console.log("set"); 
-				}
-				// console.log("set")
 			});
 			$("#Join").click(function(){
 				$("#test").append("Bye ");
-				// console.log("set")
+				// console.log("set"),.km 
 			});
 
-		});
+			$( document ).ready(function() {
+				$('.menu .browse').popup({
+							inline     : false,
+							hoverable  : true,
+							position   : 'top right',
+							delay: {
+								show: 300,
+								hide: 800
+			}});
+			  });
+
 		</script>
 	</head>
 
@@ -52,7 +52,7 @@
 					<div class = "ui bottom attached centered text container"style="font-size: 50px">
 						<p>
 							Welcome to TREE! A better version of Cards against Humanities!!!! ;)
-								<br>
+							<br>
 							Click Play TO PAY NOW!
 						</p>
 					</div>
@@ -60,11 +60,31 @@
 				</div>
 				<!-- Tab 2 - Play -->
 				<div class="ui attached tab segment" data-tab="tab-2" style="overflow-y: scroll; height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
-					<div id="test" style="font-size:20px;"><p>test</p></div>
-					<button id="Create" class="ui button">Create Game</button>
-					<!-- <button id="Join" class="ui button">Join Game</button> -->
-
-				</div>
+				<!-- Create Game button -->
+					<div class="ui menu" style="position: fixed">
+      					<a class="browse item">
+      				    Create game 
+      				  	</a>
+      				  	<div class="ui fluid popup top right transition hidden">
+     				    	<div class="ui one column relaxed divided grid">
+         				 		<div class="column"> <h4 class="ui header">New Game</h4>
+        							<div class="ui link list">
+                						<a class="item">
+											<form>
+							  					<input id="gamename" class = "ui container" type ="text" style="width:100px" placeholder="Name"></input>
+							  					<input id="gamepass" class = "ui container" type ="text" style="width:100px" placeholder="Password"></input>
+							  					<input id="gamebutton" type="button" autocomplete="off" value="Submit"></input>
+											</form>
+										</a>
+          							</div>
+        						</div>
+      						</div>
+    					</div>
+    				</div>
+    			<!-- Game Instance -->
+				<div class="ui black border container"><p>Test</p></div>	
+    			</div>
+    			
 				<!-- Tab 3 - Random Tab -->
 				<div class="ui attached tab segment" data-tab="tab-3" style="overflow-y: scroll; height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 
