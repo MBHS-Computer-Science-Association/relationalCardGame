@@ -48,10 +48,14 @@
   			  });
 			});
 
+
             $(document).ready(function(){
                 $('#submit').click(function(){
                     var selection = [selectedCard];
                     submitCards(selection);
+                });
+                  $('#joinGameButton').click(function(){
+                    joinGame();
                 });
             });
 			
@@ -276,7 +280,7 @@
 				<div class="ui attached tab segment" data-tab="tab-2" style="height: 90vh ; float:left; width:96vw; position: fixed; left: 2vw; top: 5vh;">
 				<!-- Create Game button -->
 					<div class="ui menu" style="position: fixed">
-      					<a class="browse item">
+      					<a class="browse item" id="joinGameButton">
       				    Create game 
       				  	</a>
       				  	<div class="ui fluid popup top right transition hidden">
