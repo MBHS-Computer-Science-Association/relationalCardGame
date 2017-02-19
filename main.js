@@ -32,23 +32,32 @@ function getGames(){
 }
 
 function createGame(){
-	socket.emit('createGame',0);
+	socket.emit('createGame',0, function(newGameID){
+		joinGame(newGameID);
+	});
 }
 
 function joinGame(gameID){
-	socket.emit('joinGame', gameID);
+	console.log(gameID);
+	socket.emit('joinGame', gameID, function(){
+		getSelf();
+	});
 }
 
 function getSelf(){
 	socket.emit('getSelf', function(newMe){
 		me = newMe;
+		revealhand();
+		getGame();
 	});
 }
 
 function getGame(){
 	var gameIDPar = me.gameID;
-	socket.emit('getGame', function(gameIDPar, newGame){
+	socket.emit('getGame', function(newGame){
 		game = newGame;
+		revealcards();
+		console.log('cards revealed');
 	});
 }
 
