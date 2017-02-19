@@ -23,6 +23,8 @@ var games = [];
 /**
 	pin
 	users
+	cards (text / pin)
+	winningCard
 	cardSetIndex
 	currentCardLength
 	question
@@ -64,11 +66,17 @@ io.on('connection', function(socket){
   });
 
   socket.on('submitCards', function(cardIndexArray){
-  	if(cardIndexArray.length == getGameByID(getUserByID(pin)).currentCardLength){
+  	var game = getGameByID(getUserByID(pin).gameID);
+  	if(cardIndexArray.length == game.currentCardLength){
   		out:
-	  	for(var i = getUsersByID(pin).cards.length-1; i>=0; i--){
+	  	for(var i = game.cards.length-1; i>=0; i--){
 	  		for(var k = 0; k<cardIndexArray.length; k++){
 	  			if(cardIndexArray[k] == i){
+	  				var ans = getUserbyID(pin).cards[i];
+	  				game.cards.push(ans);
+	  				if(game.cards.length==game.users.length-1){
+	  					io.push('showCards', game.pin);
+	  				}
 	  				getUserByID(pin).cards.splice(i,1); // Yes this is idiotic and inefficiant, but you are a failure at life. 
 	  				break out;
 	  			}
@@ -81,12 +89,11 @@ io.on('connection', function(socket){
   	getUserByID(pin).bets = betArray;
   });
 
-  socket.on('kaiserPick', function(index){
-  	getGameByID(getUserByID(pin).gameID).kaiserPickIndex = index;
+  socket.on('kaiserPick', function(cardIndex){
+  	getGameByID(getUserByID(pin).gameID).winningCardIndex = cardIndex;
   	evaluateGame(getUserByID(pin).gameID);
   	io.emit('update', gameID);
   });
-
 
 
 });
