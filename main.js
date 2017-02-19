@@ -22,6 +22,8 @@ function getGames(){
 	});
 }
 
+
+
 function joinGame(gameID){
 	socket.emit('joinGame', gameID);
 }
@@ -39,7 +41,8 @@ function getGame(){
 	});
 }
 
-function submitCards(cardIndex){
+
+function submitCards(cardIndexArray){
 	socket.emit('submitCards', cardIndexArray);
 }
 
