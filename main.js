@@ -12,7 +12,10 @@ socket.on('pin', function(newPin){
 
 socket.on('showCards', function(gameID){
 	if(gameID==me.gameID){
+		socket.emit('getGame', function(newGame){
+		game = newGame;
 		revealcards();
+	});
 	}
 });
 
@@ -47,7 +50,6 @@ function joinGame(gameID){
 function getSelf(){
 	socket.emit('getSelf', function(newMe){
 		me = newMe;
-		revealhand();
 		getGame();
 	});
 }
@@ -56,8 +58,7 @@ function getGame(){
 	var gameIDPar = me.gameID;
 	socket.emit('getGame', function(newGame){
 		game = newGame;
-		revealcards();
-		console.log('cards revealed');
+		revealhand();
 	});
 }
 
