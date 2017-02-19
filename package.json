@@ -1,0 +1,14 @@
+{
+  "name": "Trees",
+  "version": "0.0.1",
+  "description": "Trees",
+  "dependencies": {
+    "express": "4.14.1",
+    "socket.io": "1.7.2"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/MBHS-Computer-Science-Association/trees.git"
+  },
+  "license": "Unlicense"
+}
